@@ -1,0 +1,70 @@
+
+<form class="form-horizontal">
+	<div class="control-group">
+		<label class="control-label" for="inputName">Car Name</label>
+
+		<div class="controls">
+			<input type="text" id="inputName" ng-model="car.name"
+				placeholder="Car Name" required min="2">
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputColor">Car Color</label>
+
+		<div class="controls">
+			<input type="text" id="inputColor" ng-model="car.color"
+				placeholder="Car Color" required min="2">
+		</div>
+		<label class="control-label" for="inputColor">Car Color</label>
+
+		<div class="controls">
+			<input type="file" ng-model="car.fichier" ></input>
+		</div>
+	</div>
+	<div class="control-group">
+		<hr />
+		<div class="controls">
+			<button type="button" class="btn btn-primary"
+				ng-disabled="!car.name || !car.color" ng-hide="editMode"
+				ng-click="addNewCar(car)">Add Car</button>
+			<button type="button" class="btn btn-primary"
+				ng-disabled="!car.name || !car.speed" ng-show="editMode"
+				ng-click="updateCar(car)">Save Car</button>
+			<button type="button" class="btn" ng-click="resetCarForm()">Reset</button>
+		</div>
+	</div>
+</form>
+<hr />
+
+choise a car :
+  <select ng-model="myCar" ng-options="car.name for car in cars"></select><br>
+  
+<h3>Cars List</h3>
+<div class="alert alert-info" ng-show="cars.length == 0">No cars found</div>
+<div class="control-group" ng-show="cars.length > 0">
+	Search <input type="text" id="inputSearch" ng-model="search" placeholder="Search" min="2">
+</div>
+<table class="table table-bordered table-striped"
+	style="width: 450px; margin-left: 100px;" ng-show="cars.length > 0">
+	<thead>
+		<tr>
+			<th style="text-align: center;">Id</th>
+			<th style="text-align: center;">Car Name</th>
+			<th style="text-align: center;">Car Color</th>
+			<th style="text-align: center; width: 25px;">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="car in cars | filter:search">
+			<td>{{car.id}}</td>
+			<td>{{car.name}}</td>
+			<td>{{car.color}}</td>
+			<td style="width: 70px; text-align: center;"><button
+					class="btn btn-mini btn-danger" ng-click="removeCar(car.id)">Remove</button></td>
+		</tr>
+	</tbody>
+</table>
+
+<button style="margin-left: 100px;" class="btn btn-danger"
+	ng-show="cars.length > 1" ng-click="removeAllCars()">Remove
+	All Cars</button>
