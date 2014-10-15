@@ -16,7 +16,7 @@ var CarController = function($scope, $http) {
     };
 
     $scope.addNewCar = function(newCar) {
-    	alert(newCar.fichier);
+    	//alert(newCar.fichier);
         $http.post('cars/addCar', newCar).success(function() {
         	$scope.fetchCarsList();
             $scope.car.name = '';
@@ -36,9 +36,19 @@ var CarController = function($scope, $http) {
     $scope.removeAllCars = function() {
         $http.delete('cars/removeAllCars').success(function() {
             $scope.fetchCarsList();
+        	//alert( $scope.cars );
         });
 
     };
+    
+    $scope.resetCarForm = function() {
+    	//alert("reset");
+    	$scope.car = {};
+        $scope.car.name = '';
+        $scope.car.color = '';
+        $scope.car.fichier = '';
+        alert($scope.car.fichier);
+    }
 
     $scope.fetchCarsList();
     

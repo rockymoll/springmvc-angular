@@ -2,7 +2,11 @@
 
 var AngularSpringApp = {};
 
-var App = angular.module('AngularSpringApp', ['AngularSpringApp.filters', 'AngularSpringApp.services', 'AngularSpringApp.directives']);
+var App = angular.module('AngularSpringApp', 
+		['ngRoute',
+		 'AngularSpringApp.filters', 
+		 'AngularSpringApp.services', 
+		 'AngularSpringApp.directives']);
 
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider', function ($routeProvider) {
@@ -21,6 +25,6 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: RailwayStationController
     });
 
-    $routeProvider.otherwise({redirectTo: '/cars'});
+    $routeProvider.otherwise({redirectTo: '/trains'});
 }]);
 
